@@ -47,6 +47,7 @@ const Header = styled.h3``;
 const Container = styled.div`
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
 `;
 
 const Volumediv = styled.div`
