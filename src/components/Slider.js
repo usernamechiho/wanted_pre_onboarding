@@ -10,16 +10,13 @@ const Slider = () => {
         setVolume(e.target.value);
     };
 
-    const onMute = () => {
-        setVolume(0);
-    };
-
     return (
         <>
             <Header>Slider</Header>
             <Container>
                 <Volumediv>
                     <Percent value={volume} />
+                    <Percentsymbol>%</Percentsymbol>
                 </Volumediv>
                 <Volumeinput
                     type="range"
@@ -39,12 +36,6 @@ const Slider = () => {
                             </Volumerange>
                         ))}
                     </Volumerangecontainer>
-
-                    <Circlecontainer>
-                        {volumeRange.map((range) => (
-                            <Circle key={range} />
-                        ))}
-                    </Circlecontainer>
                 </Rangecontainer>
             </Container>
         </>
@@ -67,56 +58,26 @@ const Volumediv = styled.div`
     display: flex;
     align-items: center;
     overflow: hidden;
+    justify-content: flex-end;
 `;
 
 const Percent = styled.input`
     border: none;
     pointer-events: none;
     display: flex;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    width: 40px;
+`;
+
+const Percentsymbol = styled.h4`
+    color: grey;
+    margin-right: 10px;
 `;
 
 const Volumeinput = styled.input`
-    z-index: 1;
     width: 40%;
     margin: 15px auto;
     cursor: pointer;
-    position: relative;
-
-    -webkit-appearance: none;
-
-    ::-webkit-slider-runnable-track {
-        width: 100%;
-        height: 7px;
-        background-color: green;
-        border-radius: 20px;
-    }
-
-    ::-webkit-slider-thumb {
-        border: 5px solid gold;
-        height: 25px;
-        width: 25px;
-        border-radius: 20px;
-        background: white;
-        -webkit-appearance: none;
-        margin-top: -9px;
-    }
-`;
-
-const Circlecontainer = styled.div`
-    position: absolute;
-    display: flex;
-    width: 40%;
-    justify-content: space-between;
-    margin: -29px;
-    z-index: 0;
-`;
-
-const Circle = styled.div`
-    width: 20px;
-    height: 20px;
-    background-color: green;
-    border-radius: 30px;
 `;
 
 const Rangecontainer = styled.div`
