@@ -13,6 +13,7 @@ const Slider = () => {
     return (
         <>
             <Header>Slider</Header>
+
             <Container>
                 <Volumediv>
                     <Percent value={volume} />
@@ -20,14 +21,27 @@ const Slider = () => {
                 </Volumediv>
                 <Volumeinput
                     type="range"
-                    defaultValue={0}
                     value={volume}
                     onChange={changeVolumeFromInput}
                 />
+                <Fakerangeinput></Fakerangeinput>
+                <Fakerangemovinginput volume={volume}></Fakerangemovinginput>
+                <Ballcontainer>
+                    {volumeRange.map((ball) => (
+                        <Rangeball
+                            key={ball}
+                            volume={volume}
+                            ball={ball}
+                        ></Rangeball>
+                    ))}
+                </Ballcontainer>
                 <Rangecontainer>
                     <Volumerangecontainer>
                         {volumeRange.map((range) => (
                             <Volumerange
+                                style={{
+                                    backgroundColor: range === 0 && '#ccc',
+                                }}
                                 onClick={() => {
                                     setVolume(range);
                                 }}
@@ -76,9 +90,47 @@ const Percentsymbol = styled.h4`
 `;
 
 const Volumeinput = styled.input`
+    -webkit-appearance: none;
     width: 40%;
     margin: 15px auto;
     cursor: pointer;
+    position: relative;
+    background-color: transparent;
+    z-index: 3;
+
+    ::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: white;
+        cursor: pointer;
+        border-radius: 30px;
+        border: 3px solid black;
+    }
+`;
+
+const Fakerangemovinginput = styled.div`
+    width: ${({ volume }) => volume / 2.5}%;
+    height: 15px;
+    margin: 15px auto;
+    background: #808080;
+    border-radius: 20px;
+    position: absolute;
+    left: 30vw;
+    margin-top: 70px;
+    z-index: 2;
+`;
+
+const Fakerangeinput = styled.div`
+    width: 40%;
+    height: 15px;
+    margin: 15px auto;
+    border-radius: 20px;
+    background-color: #d3d3d3;
+    position: absolute;
+    left: 30vw;
+    margin-top: 70px;
+    z-index: 1;
 `;
 
 const Rangecontainer = styled.div`
@@ -86,6 +138,25 @@ const Rangecontainer = styled.div`
     width: 45%;
     justify-content: space-around;
     margin: auto;
+`;
+
+const Ballcontainer = styled.div`
+    display: flex;
+    width: 42%;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: -41px;
+    z-index: 0;
+`;
+
+const Rangeball = styled.div`
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    margin: 2px;
+    background-color: ${({ volume, ball }) =>
+        volume >= ball ? '#808080' : '#ccc'};
+    position: relative;
 `;
 
 const Volumerangecontainer = styled.div`
