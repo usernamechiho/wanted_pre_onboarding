@@ -147,6 +147,7 @@ const Ballcontainer = styled.div`
     margin: auto;
     margin-top: -41px;
     z-index: 0;
+    margin-bottom: 10px;
 `;
 
 const Rangeball = styled.div`
