@@ -18,7 +18,7 @@ const Dropdown = () => {
 
     const [clickedMenu, setClickedMenu] = useState('오늘의 식사는?');
 
-    const menus = [
+    const [menus, setMenus] = useState([
         '김치찌개',
         '된장국',
         '된장찌개',
@@ -28,8 +28,11 @@ const Dropdown = () => {
         '시래기국',
         '순대국',
         '감자전',
-    ];
+    ]);
 
+    const searchedMenu = menus.filter((menu) =>
+        menu.toLowerCase().includes(searchVal)
+    );
 
     return (
         <>
@@ -47,7 +50,7 @@ const Dropdown = () => {
                             Search={Search}
                             placeholder="메뉴를 검색하세요!"
                         />
-                        {menus.map((menu) => (
+                        {searchedMenu.map((menu) => (
                             <Menubuttoncontainer>
                                 <Menubutton
                                     onClick={() => {
