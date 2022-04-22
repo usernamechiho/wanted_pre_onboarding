@@ -47,6 +47,7 @@ Toggle.js 컴포넌트와 마찬가지로, 각각의 메뉴가 가지고있는 i
 ![SLIDER](https://user-images.githubusercontent.com/87627359/164742061-93423b18-4b2d-4661-ad24-eb4467779f18.gif)
 
 ✔️ **기능 구현**
+
 현재 볼륨이 몇 퍼센트인지 표시할 값은 State로 관리했고, input type='range'의 target.value가 바뀔 때마다 setState로 동적인 변경을 주었습니다.
 
 **input type range는 기본 CSS속성으로는 Customization이 불가능해 기본 CSS속성에 appearance: none을 부여, 브라우저 엔진 webkit을 이용해 커스터마이징을 진행하였습니다.**
